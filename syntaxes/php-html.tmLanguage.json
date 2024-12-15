@@ -1,0 +1,105 @@
+{
+  "scopeName": "source.php.html",
+  "injectionSelector": "L:text.html.php -comment -string",
+  "patterns": [
+    {
+      "include": "#html-string"
+    }
+  ],
+  "repository": {
+    "html-string": {
+      "begin": "(/\\*html\\*/)\\s*([\"'])",
+      "end": "\\2\\s*;|\\2\\s*$",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.php"
+        },
+        "2": {
+          "name": "string.quoted.php"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.php"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#php-inline"
+        },
+        {
+          "include": "#php-interpolation"
+        },
+        {
+          "include": "text.html.basic"
+        }
+      ]
+    },
+    "php-inline": {
+      "patterns": [
+        {
+          "begin": "'\\s*\\.\\s*",
+          "end": "\\s*\\.\\s*'",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.separator.php"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.separator.php"
+            }
+          },
+          "patterns": [
+            {
+              "include": "source.php"
+            }
+          ]
+        },
+        {
+          "begin": "\"\\s*\\.\\s*",
+          "end": "\\s*\\.\\s*\"",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.separator.php"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.separator.php"
+            }
+          },
+          "patterns": [
+            {
+              "include": "source.php"
+            }
+          ]
+        }
+      ]
+    },
+    "php-interpolation": {
+      "patterns": [
+        {
+          "begin": "\\{\\$",
+          "end": "\\}",
+          "name": "punctuation.definition.variable.php",
+          "patterns": [
+            {
+              "include": "source.php"
+            }
+          ]
+        },
+        {
+          "begin": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
+          "end": "(?=[^a-zA-Z0-9_])",
+          "name": "variable.other.php",
+          "patterns": [
+            {
+              "include": "source.php"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

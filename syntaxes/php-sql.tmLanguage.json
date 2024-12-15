@@ -1,0 +1,48 @@
+{
+  "scopeName": "source.php.sql",
+  "injectionSelector": "L:text.html.php -comment -string",
+  "patterns": [
+    {
+      "include": "#sql-string"
+    }
+  ],
+  "repository": {
+    "sql-string": {
+      "begin": "(/\\*sql\\*/)\\s*([\"'])",
+      "end": "\\2",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.php"
+        },
+        "2": {
+          "name": "string.quoted.double.php"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.double.php"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.sql"
+        },
+        {
+          "include": "#php-interpolation"
+        }
+      ]
+    },
+    "php-interpolation": {
+      "patterns": [
+        {
+          "match": "\\$([a-zA-Z_][a-zA-Z0-9_]*)",
+          "name": "variable.other.php"
+        },
+        {
+          "match": "'\\$([a-zA-Z_][a-zA-Z0-9_]*)'",
+          "name": "source.sql.embedded.php string.quoted.single.sql.php variable.other.php"
+        }
+      ]
+    }
+  }
+}

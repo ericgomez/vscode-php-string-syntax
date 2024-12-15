@@ -1,0 +1,54 @@
+{
+  "name": "php-string-syntax",
+  "displayName": "PHP String Syntax",
+  "description": "Adds SQL and HTML syntax highlighting for PHP strings with /*sql*/ and /*html*/ prefix",
+  "version": "0.0.1",
+  "publisher": "ericgomez",
+  "icon": "images/logo.png",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "grammars": [
+      {
+        "path": "./syntaxes/php-sql.tmLanguage.json",
+        "scopeName": "source.php.sql",
+        "injectTo": [
+          "text.html.php"
+        ],
+        "embeddedLanguages": {
+          "source.sql.embedded.php": "sql"
+        }
+      },
+      {
+        "path": "./syntaxes/php-html.tmLanguage.json",
+        "scopeName": "source.php.html",
+        "injectTo": [
+          "text.html.php"
+        ],
+        "embeddedLanguages": {
+          "text.html.basic": "html"
+        }
+      }
+    ]
+  },
+  "keywords": [
+    "php",
+    "sql",
+    "html",
+    "highlight",
+    "syntax"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ericgomez/vscode-php-string-syntax.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ericgomez/vscode-php-string-syntax/issues",
+    "email": "eric.gomez.sanchez@gmail.com"
+  }
+}
