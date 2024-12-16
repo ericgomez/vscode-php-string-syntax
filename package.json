@@ -2,7 +2,7 @@
   "name": "php-string-syntax",
   "displayName": "PHP String Syntax",
   "description": "Adds SQL and HTML syntax highlighting for PHP strings with /*sql*/ and /*html*/ prefix",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "ericgomez",
   "icon": "images/logo.png",
   "license": "MIT",
@@ -41,6 +41,7 @@
     "sql",
     "html",
     "highlight",
+    "string",
     "syntax"
   ],
   "repository": {
