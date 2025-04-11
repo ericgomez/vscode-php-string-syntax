@@ -1,8 +1,8 @@
 {
   "name": "php-string-syntax",
   "displayName": "PHP String Syntax",
-  "description": "Adds SQL and HTML syntax highlighting for PHP strings with /*sql*/ and /*html*/ prefix",
-  "version": "0.0.2",
+  "description": "Adds SQL, HTML, and JavaScript syntax highlighting for PHP strings with /*sql*/, /*html*/, or /*js*/ prefix",
+  "version": "0.0.3",
   "publisher": "ericgomez",
   "icon": "images/logo.png",
   "license": "MIT",
@@ -32,6 +32,16 @@
         ],
         "embeddedLanguages": {
           "text.html.basic": "html"
+        }
+      },
+      {
+        "path": "./syntaxes/php-js.tmLanguage.json",
+        "scopeName": "source.php.js",
+        "injectTo": [
+          "text.html.php"
+        ],
+        "embeddedLanguages": {
+          "source.js.embedded.php": "js"
         }
       }
     ]

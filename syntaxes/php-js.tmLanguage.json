@@ -1,0 +1,64 @@
+{
+  "scopeName": "source.php.js",
+  "injectionSelector": "L:text.html.php -comment -string",
+  "patterns": [
+    {
+      "include": "#js-string"
+    }
+  ],
+  "repository": {
+    "js-string": {
+      "begin": "(/\\*js\\*/)\\s*([\"'])",
+      "end": "\\2",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.php"
+        },
+        "2": {
+          "name": "string.quoted.double.php"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.double.php"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#php-interpolation"
+        },
+        {
+          "include": "source.js"
+        }
+      ]
+    },
+    "php-interpolation": {
+      "patterns": [
+        {
+          "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
+          "name": "variable.other.php"
+        },
+        {
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
+              "name": "variable.other.php"
+            }
+          ]
+        },
+        {
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
+              "name": "variable.other.php"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
