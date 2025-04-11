@@ -1,17 +1,18 @@
 # PHP String Syntax
 
-**PHP String Syntax** is a Visual Studio Code extension that highlights SQL and HTML embedded in PHP strings. It uses the `/*sql*/` marker to identify and apply syntax highlighting to SQL queries, and the `/*html*/` marker for HTML content, ensuring compatibility with other editors by not altering the internal text content.
+**PHP String Syntax** is a Visual Studio Code extension that highlights SQL, HTML, and JavaScript embedded in PHP strings. It uses the `/*sql*/`, `/*html*/`, and `/*js*/` markers to identify and apply syntax highlighting to SQL queries, HTML content, and JavaScript code, ensuring compatibility with other editors by not altering the internal text content.
 
 ## Features
 
-- **SQL and HTML Syntax Highlighting**: Automatically detects SQL queries preceded by `/*sql*/` and HTML content preceded by `/*html*/`, applying the appropriate syntax highlighting.
-- **Compatibility with Other Editors**: The use of `/*sql*/` and `/*html*/` comments does not interfere with syntax in other editors or IDEs.
-- **Multiline String Support**: Works seamlessly with queries and HTML content spread across multiple lines.
+- **SQL, HTML, and JavaScript Syntax Highlighting**: Automatically detects SQL queries preceded by `/*sql*/`, HTML content preceded by `/*html*/`, and JavaScript code preceded by `/*js*/`, applying the appropriate syntax highlighting.
+- **Compatibility with Other Editors**: The use of `/*sql*/`, `/*html*/`, and `/*js*/` comments does not interfere with syntax in other editors or IDEs.
+- **Multiline String Support**: Works seamlessly with queries, HTML content, and JavaScript code spread across multiple lines.
 
 ### Current Support
 
 - **HTML**
 - **SQL**
+- **JavaScript**
 
 ### Example
 
@@ -21,7 +22,12 @@
 #### SQL Example
 ![sql](./images/sql_example.png)
 
-Visual Studio Code will apply SQL and HTML syntax highlighting to the content of the strings, improving readability and streamlining development.
+#### JavaScript Example
+```php
+$jsCode = /*js*/ "console.log('Hello, World!');";
+```
+
+Visual Studio Code will apply SQL, HTML, and JavaScript syntax highlighting to the content of the strings, improving readability and streamlining development.
 
 ### Installation
 
