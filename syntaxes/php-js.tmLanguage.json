@@ -3,12 +3,15 @@
   "injectionSelector": "L:text.html.php -comment -string",
   "patterns": [
     {
-      "include": "#js-string"
+      "include": "#js-string-single"
+    },
+    {
+      "include": "#js-string-double"
     }
   ],
   "repository": {
-    "js-string": {
-      "begin": "(/\\*js\\*/)\\s*([\"'])",
+    "js-string-single": {
+      "begin": "(/\\*js\\*/)\\s*(')",
       "end": "\\2",
       "beginCaptures": {
         "1": {
@@ -23,40 +26,33 @@
           "name": "string.quoted.double.php"
         }
       },
+      "contentName": "text.js.embedded.php",
       "patterns": [
-        {
-          "include": "#php-interpolation"
-        },
         {
           "include": "source.js"
         }
       ]
     },
-    "php-interpolation": {
+    "js-string-double": {
+      "begin": "(/\\*js\\*/)\\s*(\")",
+      "end": "\\2",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.php"
+        },
+        "2": {
+          "name": "string.quoted.double.php"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.double.php"
+        }
+      },
+      "contentName": "text.js.embedded.php",
       "patterns": [
         {
-          "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
-          "name": "variable.other.php"
-        },
-        {
-          "begin": "'",
-          "end": "'",
-          "patterns": [
-            {
-              "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
-              "name": "variable.other.php"
-            }
-          ]
-        },
-        {
-          "begin": "\"",
-          "end": "\"",
-          "patterns": [
-            {
-              "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
-              "name": "variable.other.php"
-            }
-          ]
+          "include": "source.js"
         }
       ]
     }

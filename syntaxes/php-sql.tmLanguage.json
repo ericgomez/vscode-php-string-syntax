@@ -3,12 +3,15 @@
   "injectionSelector": "L:text.html.php -comment -string",
   "patterns": [
     {
-      "include": "#sql-string"
+      "include": "#sql-string-single"
+    },
+    {
+      "include": "#sql-string-double"
     }
   ],
   "repository": {
-    "sql-string": {
-      "begin": "(/\\*sql\\*/)\\s*([\"'])",
+    "sql-string-single": {
+      "begin": "(/\\*sql\\*/)\\s*(')",
       "end": "\\2",
       "beginCaptures": {
         "1": {
@@ -23,93 +26,33 @@
           "name": "string.quoted.double.php"
         }
       },
+      "contentName": "source.sql.embedded.php",
       "patterns": [
-        {
-          "include": "#php-interpolation"
-        },
         {
           "include": "source.sql"
         }
       ]
     },
-    "php-interpolation": {
+    "sql-string-double": {
+      "begin": "(/\\*sql\\*/)\\s*(\")",
+      "end": "\\2",
+      "beginCaptures": {
+        "1": {
+          "name": "comment.block.php"
+        },
+        "2": {
+          "name": "string.quoted.double.php"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.double.php"
+        }
+      },
+      "contentName": "source.sql.embedded.php",
       "patterns": [
         {
-          "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
-          "name": "variable.other.php"
-        },
-        {
-          "match": "->[a-zA-Z_][a-zA-Z0-9_]*",
-          "captures": {
-            "0": {
-              "patterns": [
-                {
-                  "match": "->",
-                  "name": "keyword.operator.class.php"
-                },
-                {
-                  "match": "[a-zA-Z_][a-zA-Z0-9_]*",
-                  "name": "variable.other.property.php"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "begin": "'",
-          "end": "'",
-          "name": "string.quoted.single.sql",
-          "patterns": [
-            {
-              "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
-              "name": "variable.other.php"
-            },
-            {
-              "match": "->[a-zA-Z_][a-zA-Z0-9_]*",
-              "captures": {
-                "0": {
-                  "patterns": [
-                    {
-                      "match": "->",
-                      "name": "keyword.operator.class.php"
-                    },
-                    {
-                      "match": "[a-zA-Z_][a-zA-Z0-9_]*",
-                      "name": "variable.other.property.php"
-                    }
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        {
-          "begin": "\"",
-          "end": "\"",
-          "name": "string.quoted.double.sql",
-          "patterns": [
-            {
-              "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
-              "name": "variable.other.php"
-            },
-            {
-              "match": "->[a-zA-Z_][a-zA-Z0-9_]*",
-              "captures": {
-                "0": {
-                  "patterns": [
-                    {
-                      "match": "->",
-                      "name": "keyword.operator.class.php"
-                    },
-                    {
-                      "match": "[a-zA-Z_][a-zA-Z0-9_]*",
-                      "name": "variable.other.property.php"
-                    }
-                  ]
-                }
-              }
-            }
-          ]
+          "include": "source.sql"
         }
       ]
     }

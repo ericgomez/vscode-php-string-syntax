@@ -1,28 +1,29 @@
 # PHP String Syntax
 
-**PHP String Syntax** is a Visual Studio Code extension that highlights SQL, HTML, and JavaScript embedded in PHP strings. It uses the `/*sql*/`, `/*html*/`, and `/*js*/` markers to identify and apply syntax highlighting to SQL queries, HTML content, and JavaScript code, ensuring compatibility with other editors by not altering the internal text content.
+**PHP String Syntax** is a Visual Studio Code extension that highlights SQL, HTML, and JavaScript embedded in PHP strings. The extension automatically infers HTML and SQL content by default, while also supporting explicit language markers (`/*sql*/`, `/*html*/`, and `/*js*/`) to identify and apply syntax highlighting to SQL queries, HTML content, and JavaScript code.
 
 ## Features
 
-- **SQL, HTML, and JavaScript Syntax Highlighting**: Automatically detects SQL queries preceded by `/*sql*/`, HTML content preceded by `/*html*/`, and JavaScript code preceded by `/*js*/`, applying the appropriate syntax highlighting.
-- **Compatibility with Other Editors**: The use of `/*sql*/`, `/*html*/`, and `/*js*/` comments does not interfere with syntax in other editors or IDEs.
+- **Automatic Language Detection**: Infers and highlights HTML and SQL content in PHP strings without requiring explicit markers.
+- **Explicit Language Markers**: Supports `/*sql*/`, `/*html*/`, and `/*js*/` comments for explicit language specification when needed.
+- **Compatibility with Other Editors**: The use of language markers does not interfere with syntax in other editors or IDEs.
 - **Multiline String Support**: Works seamlessly with queries, HTML content, and JavaScript code spread across multiple lines.
 
 ### Current Support
 
-- **HTML**
-- **SQL**
-- **JavaScript**
+- **HTML** (auto-detected and with explicit marker)
+- **SQL** (auto-detected and with explicit marker)
+- **JavaScript** (with explicit marker)
 
 ### Example
 
-#### HTML Example
+#### HTML Example (Auto-detected or Explicit)
 ![html](./images/html_example.png)
 
-#### SQL Example
+#### SQL Example (Auto-detected or Explicit)
 ![sql](./images/sql_example.png)
 
-#### JavaScript Example
+#### JavaScript Example (Explicit)
 ```php
 $jsCode = /*js*/ "console.log('Hello, World!');";
 ```
