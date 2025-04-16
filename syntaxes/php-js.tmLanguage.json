@@ -12,30 +12,37 @@
   "repository": {
     "js-string-single": {
       "begin": "(/\\*js\\*/)\\s*(')",
-      "end": "\\2",
+      "end": "(')",
       "beginCaptures": {
         "1": {
           "name": "comment.block.php"
         },
         "2": {
-          "name": "string.quoted.double.php"
+          "name": "string.quoted.single.php"
         }
       },
       "endCaptures": {
-        "0": {
-          "name": "string.quoted.double.php"
+        "1": {
+          "name": "string.quoted.single.php"
         }
       },
-      "contentName": "text.js.embedded.php",
+      "contentName": "string.quoted.single.php",
       "patterns": [
         {
-          "include": "source.js"
+          "begin": "(?<=')",
+          "end": "(?=')",
+          "contentName": "source.js.embedded.php",
+          "patterns": [
+            {
+              "include": "source.js"
+            }
+          ]
         }
       ]
     },
     "js-string-double": {
       "begin": "(/\\*js\\*/)\\s*(\")",
-      "end": "\\2",
+      "end": "(\")",
       "beginCaptures": {
         "1": {
           "name": "comment.block.php"
@@ -45,14 +52,48 @@
         }
       },
       "endCaptures": {
-        "0": {
+        "1": {
           "name": "string.quoted.double.php"
         }
       },
-      "contentName": "text.js.embedded.php",
+      "contentName": "string.quoted.double.php",
       "patterns": [
         {
-          "include": "source.js"
+          "begin": "(?<=\")",
+          "end": "(?=\")",
+          "contentName": "source.js.embedded.php",
+          "patterns": [
+            {
+              "include": "source.js"
+            },
+            {
+              "include": "#php-interpolation"
+            }
+          ]
+        }
+      ]
+    },
+    "php-interpolation": {
+      "patterns": [
+        {
+          "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
+          "name": "variable.other.php"
+        },
+        {
+          "match": "\\{",
+          "name": "punctuation.definition.begin.bracket.curly.php"
+        },
+        {
+          "match": "\\}",
+          "name": "punctuation.definition.end.bracket.curly.php"
+        },
+        {
+          "match": "\\[",
+          "name": "punctuation.section.array.begin.php"
+        },
+        {
+          "match": "\\]",
+          "name": "punctuation.section.array.end.php"
         }
       ]
     }

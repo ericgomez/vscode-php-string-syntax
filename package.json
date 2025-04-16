@@ -23,8 +23,7 @@
         "embeddedLanguages": {
           "source.sql.embedded.php": "sql",
           "text.html.embedded.php": "html"
-        },
-        "priority": 1
+        }
       },
       {
         "path": "./syntaxes/php-sql.tmLanguage.json",

@@ -3,135 +3,23 @@
   "injectionSelector": "L:text.html.php -comment -string",
   "patterns": [
     {
-      "include": "#inline-string-single"
+      "include": "#inference-string-single"
     },
     {
-      "include": "#inline-string-double"
-    },
-    {
-      "include": "#multiline-string-single"
-    },
-    {
-      "include": "#multiline-string-double"
+      "include": "#inference-string-double"
     }
   ],
   "repository": {
-    "inline-string-single": {
-      "begin": "(')\\s*(<)(/?[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9]*(?:=(?:\"[^\"]*\"|[^\\s>]*))?)*)(\\s*)(>)?",
-      "end": "\\1",
-      "beginCaptures": {
-        "1": {
-          "name": "string.quoted.single.php"
-        },
-        "2": {
-          "name": "punctuation.definition.tag.begin.html"
-        },
-        "3": {
-          "name": "entity.name.tag.html"
-        },
-        "4": {
-          "patterns": [
-            {
-              "match": "\\s+([a-zA-Z][a-zA-Z0-9]*)(?:(=)(?:(\"[^\"]*\")|([^\\s>]*)))?",
-              "captures": {
-                "1": {
-                  "name": "entity.other.attribute-name.html"
-                },
-                "2": {
-                  "name": "punctuation.separator.key-value.html"
-                },
-                "3": {
-                  "name": "string.quoted.html"
-                },
-                "4": {
-                  "name": "string.unquoted.html"
-                }
-              }
-            }
-          ]
-        },
-        "5": {
-          "name": "punctuation.whitespace.html"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.end.html"
-        }
-      },
-      "endCaptures": {
-        "0": {
-          "name": "string.quoted.single.php"
-        }
-      },
-      "contentName": "text.html.embedded.php",
-      "patterns": [
-        {
-          "include": "text.html.basic"
-        }
-      ]
-    },
-    "inline-string-double": {
-      "begin": "(\")\\s*(<)(/?[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9]*(?:=(?:'[^']*'|[^\\s>]*))?)*)(\\s*)(>)?",
-      "end": "\\1",
-      "beginCaptures": {
-        "1": {
-          "name": "string.quoted.double.php"
-        },
-        "2": {
-          "name": "punctuation.definition.tag.begin.html"
-        },
-        "3": {
-          "name": "entity.name.tag.html"
-        },
-        "4": {
-          "patterns": [
-            {
-              "match": "\\s+([a-zA-Z][a-zA-Z0-9]*)(?:(=)(?:('[^']*')|([^\\s>]*)))?",
-              "captures": {
-                "1": {
-                  "name": "entity.other.attribute-name.html"
-                },
-                "2": {
-                  "name": "punctuation.separator.key-value.html"
-                },
-                "3": {
-                  "name": "string.quoted.html"
-                },
-                "4": {
-                  "name": "string.unquoted.html"
-                }
-              }
-            }
-          ]
-        },
-        "5": {
-          "name": "punctuation.whitespace.html"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.end.html"
-        }
-      },
-      "endCaptures": {
-        "0": {
-          "name": "string.quoted.double.php"
-        }
-      },
-      "contentName": "text.html.embedded.php",
-      "patterns": [
-        {
-          "include": "text.html.basic"
-        }
-      ]
-    },
-    "multiline-string-single": {
-      "begin": "(')\\s*$",
-      "end": "\\1",
+    "inference-string-single": {
+      "begin": "(')(?=\\s*(<)(/?[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9]*(?:=(?:\"[^\"]*\"|[^\\s>]*))?)*)(\\s*)(>)?|\\s*$)",
+      "end": "(')",
       "beginCaptures": {
         "1": {
           "name": "string.quoted.single.php"
         }
       },
       "endCaptures": {
-        "0": {
+        "1": {
           "name": "string.quoted.single.php"
         }
       },
@@ -139,18 +27,10 @@
       "patterns": [
         {
           "begin": "^\\s*(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|TRUNCATE|GRANT|REVOKE|START\\s+TRANSACTION|BEGIN|COMMIT|ROLLBACK|SAVEPOINT)\\b",
-          "end": "(?=\\s*'\\s*|\\s*'\\s*$)",
+          "end": "(?=')",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.sql"
-            }
-          },
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.tag.begin.html"
-            },
-            "2": {
-              "name": "entity.name.tag.style.html"
             }
           },
           "contentName": "source.sql.embedded.php",
@@ -161,8 +41,8 @@
           ]
         },
         {
-          "begin": "^\\s*(<)(/?[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9]*(?:=(?:\"[^\"]*\"|[^\\s>]*))?)*)(\\s*)(>)?",
-          "end": "(?=\\s*'\\s*|\\s*'\\s*$)",
+          "begin": "(<)(/?[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9]*(?:=(?:\"[^\"]*\"|[^\\s>]*))?)*)(\\s*)(>)?",
+          "end": "(?=')",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.tag.begin.html"
@@ -198,14 +78,6 @@
               "name": "punctuation.definition.tag.end.html"
             }
           },
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.tag.begin.html"
-            },
-            "2": {
-              "name": "entity.name.tag.style.html"
-            }
-          },
           "contentName": "text.html.embedded.php",
           "patterns": [
             {
@@ -215,16 +87,16 @@
         }
       ]
     },
-    "multiline-string-double": {
-      "begin": "(\")\\s*$",
-      "end": "\\1",
+    "inference-string-double": {
+      "begin": "(\")(?=\\s*(<)(/?[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9]*(?:=(?:'[^']*'|[^\\s>]*))?)*)(\\s*)(>)?|\\s*$)",
+      "end": "(\")",
       "beginCaptures": {
         "1": {
           "name": "string.quoted.double.php"
         }
       },
       "endCaptures": {
-        "0": {
+        "1": {
           "name": "string.quoted.double.php"
         }
       },
@@ -232,30 +104,25 @@
       "patterns": [
         {
           "begin": "^\\s*(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|TRUNCATE|GRANT|REVOKE|START\\s+TRANSACTION|BEGIN|COMMIT|ROLLBACK|SAVEPOINT)\\b",
-          "end": "(?=\\s*\"\\s*|\\s*\"\\s*$)",
+          "end": "(?=\")",
           "beginCaptures": {
             "1": {
               "name": "keyword.other.sql"
-            }
-          },
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.tag.begin.html"
-            },
-            "2": {
-              "name": "entity.name.tag.style.html"
             }
           },
           "contentName": "source.sql.embedded.php",
           "patterns": [
             {
               "include": "source.sql"
+            },
+            {
+              "include": "#php-interpolation"
             }
           ]
         },
         {
-          "begin": "^\\s*(<)(/?[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9]*(?:=(?:'[^']*'|[^\\s>]*))?)*)(\\s*)(>)?",
-          "end": "(?=\\s*['\"]\\s*|\\s*['\"]\\s*$)",
+          "begin": "(<)(/?[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9]*(?:=(?:'[^']*'|[^\\s>]*))?)*)(\\s*)(>)?",
+          "end": "(?=\")",
           "beginCaptures": {
             "1": {
               "name": "punctuation.definition.tag.begin.html"
@@ -291,20 +158,39 @@
               "name": "punctuation.definition.tag.end.html"
             }
           },
-          "endCaptures": {
-            "1": {
-              "name": "punctuation.definition.tag.begin.html"
-            },
-            "2": {
-              "name": "entity.name.tag.style.html"
-            }
-          },
           "contentName": "text.html.embedded.php",
           "patterns": [
             {
               "include": "text.html.basic"
+            },
+            {
+              "include": "#php-interpolation"
             }
           ]
+        }
+      ]
+    },
+    "php-interpolation": {
+      "patterns": [
+        {
+          "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
+          "name": "variable.other.php"
+        },
+        {
+          "match": "\\{",
+          "name": "punctuation.definition.begin.bracket.curly.php"
+        },
+        {
+          "match": "\\}",
+          "name": "punctuation.definition.end.bracket.curly.php"
+        },
+        {
+          "match": "\\[",
+          "name": "punctuation.section.array.begin.php"
+        },
+        {
+          "match": "\\]",
+          "name": "punctuation.section.array.end.php"
         }
       ]
     }

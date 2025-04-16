@@ -12,47 +12,88 @@
   "repository": {
     "html-string-single": {
       "begin": "(/\\*html\\*/)\\s*(')",
-      "end": "\\2",
+      "end": "(')",
       "beginCaptures": {
         "1": {
           "name": "comment.block.php"
         },
         "2": {
-          "name": "string.quoted.php"
+          "name": "string.quoted.single.php"
         }
       },
       "endCaptures": {
-        "0": {
-          "name": "string.quoted.php"
+        "1": {
+          "name": "string.quoted.single.php"
         }
       },
-      "contentName": "text.html.embedded.php",
+      "contentName": "string.quoted.single.php",
       "patterns": [
         {
-          "include": "text.html.basic"
+          "begin": "(?<=')",
+          "end": "(?=')",
+          "contentName": "text.html.embedded.php",
+          "patterns": [
+            {
+              "include": "text.html.basic"
+            }
+          ]
         }
       ]
     },
     "html-string-double": {
       "begin": "(/\\*html\\*/)\\s*(\")",
-      "end": "\\2",
+      "end": "(\")",
       "beginCaptures": {
         "1": {
           "name": "comment.block.php"
         },
         "2": {
-          "name": "string.quoted.php"
+          "name": "string.quoted.double.php"
         }
       },
       "endCaptures": {
-        "0": {
-          "name": "string.quoted.php"
+        "1": {
+          "name": "string.quoted.double.php"
         }
       },
-      "contentName": "text.html.embedded.php",
+      "contentName": "string.quoted.double.php",
       "patterns": [
         {
-          "include": "text.html.basic"
+          "begin": "(?<=\")",
+          "end": "(?=\")",
+          "contentName": "text.html.embedded.php",
+          "patterns": [
+            {
+              "include": "text.html.basic"
+            },
+            {
+              "include": "#php-interpolation"
+            }
+          ]
+        }
+      ]
+    },
+    "php-interpolation": {
+      "patterns": [
+        {
+          "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
+          "name": "variable.other.php"
+        },
+        {
+          "match": "\\{",
+          "name": "punctuation.definition.begin.bracket.curly.php"
+        },
+        {
+          "match": "\\}",
+          "name": "punctuation.definition.end.bracket.curly.php"
+        },
+        {
+          "match": "\\[",
+          "name": "punctuation.section.array.begin.php"
+        },
+        {
+          "match": "\\]",
+          "name": "punctuation.section.array.end.php"
         }
       ]
     }
