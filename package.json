@@ -1,8 +1,8 @@
 {
   "name": "php-string-syntax",
   "displayName": "PHP String Syntax",
-  "description": "Highlights SQL, HTML, and JavaScript in PHP strings. Automatically infers HTML and SQL content, and supports explicit /*sql*/, /*html*/, or /*js*/ markers",
-  "version": "0.1.0",
+  "description": "Syntax highlighting for HTML, SQL and JavaScript inside PHP strings",
+  "version": "0.1.1",
   "publisher": "ericgomez",
   "icon": "images/logo.png",
   "license": "MIT",
@@ -54,16 +54,6 @@
         "embeddedLanguages": {
           "source.js.embedded.php": "js"
         }
-      },
-      {
-        "path": "./syntaxes/selector.tmLanguage.json",
-        "scopeName": "source.js.selector",
-        "injectTo": [
-          "source.js",
-          "source.ts",
-          "source.jsx",
-          "source.tsx"
-        ]
       }
     ]
   },
