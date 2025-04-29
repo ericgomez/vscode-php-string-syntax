@@ -30,6 +30,41 @@ $jsCode = /*js*/ "console.log('Hello, World!');";
 
 Visual Studio Code will apply SQL, HTML, and JavaScript syntax highlighting to the content of the strings, improving readability and streamlining development.
 
+### Customization
+
+Some themes will require customizing the appearance of embedded code by adding TextMate scopes to your VS Code configuration. Below is a basic configuration for the `settings.json` file, but you can add more scopes as needed for your specific customization requirements:
+
+```json
+"editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "string.quoted.double.php text.html.embedded.php",
+          "string.quoted.single.php text.html.embedded.php",
+          "string.quoted.double.php punctuation.section.array",
+          "string.quoted.single.php punctuation.section.array",
+          "string.quoted.double.php punctuation.definition.arguments",
+          "string.quoted.single.php punctuation.definition.arguments"
+        ],
+        "settings": {
+          "foreground": "#BCBEC4"
+        }
+      },
+      {
+        "scope": [
+          "string.quoted.double.php punctuation.definition.tag",
+          "string.quoted.single.php punctuation.definition.tag"
+        ],
+        "settings": {
+          "foreground": "#ABB2BF"
+        }
+      }
+    ]
+}
+```
+
+You can modify the hex color values to match your preferred color scheme.
+
 ### Installation
 
 1. Open Visual Studio Code.

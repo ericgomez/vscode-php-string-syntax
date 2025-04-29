@@ -1,0 +1,60 @@
+{
+  "scopeName": "source.php.blade",
+  "injectionSelector": "L:text.html.php -comment -string",
+  "patterns": [
+    {
+      "include": "#blade-string-single"
+    },
+    {
+      "include": "#blade-string-double"
+    }
+  ],
+  "repository": {
+    "blade-string-single": {
+      "begin": "\\s*:[a-zA-Z][a-zA-Z0-9-]*(=)(')",
+      "end": "(')",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.separator.key-value.html"
+        },
+        "2": {
+          "name": "string.quoted.single.php punctuation.definition.string.begin.php"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "string.quoted.single.php punctuation.definition.string.end.php"
+        }
+      },
+      "contentName": "string.quoted.single.php",
+      "patterns": [
+        {
+          "include": "source.php"
+        }
+      ]
+    },
+    "blade-string-double": {
+      "begin": "\\s*:[a-zA-Z][a-zA-Z0-9-]*(=)(\")",
+      "end": "(\")",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.separator.key-value.html"
+        },
+        "2": {
+          "name": "string.quoted.double.php punctuation.definition.string.begin.php"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "string.quoted.double.php punctuation.definition.string.end.php"
+        }
+      },
+      "contentName": "string.quoted.double.php",
+      "patterns": [
+        {
+          "include": "source.php"
+        }
+      ]
+    }
+  }
+}
