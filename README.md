@@ -17,10 +17,10 @@
 
 ### Example
 
-#### HTML Example (Explicit)
+#### HTML Example
 ![html](./images/html_example.png)
 
-#### SQL Example (Explicit)
+#### SQL Example
 ![sql](./images/sql_example.png)
 
 #### JavaScript Example (Explicit)

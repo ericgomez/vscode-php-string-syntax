@@ -3,6 +3,9 @@
   "injectionSelector": "L:source.php -comment -string -(string source.php), L:text.html.php -comment -string -(string source.php)",
   "patterns": [
     {
+      "include": "#contractions-in-text"
+    },
+    {
       "include": "#inference-string-single"
     },
     {
@@ -25,6 +28,9 @@
         }
       },
       "patterns": [
+        {
+          "include": "#contractions-in-text"
+        },
         {
           "include": "#embedded-sql-single"
         },
@@ -122,6 +128,9 @@
       },
       "contentName": "text.html.embedded.php",
       "patterns": [
+        {
+          "include": "#contractions-in-text"
+        },
         {
           "include": "#html-tags"
         },
@@ -235,6 +244,9 @@
           ]
         }
       }
+    },
+    "contractions-in-text": {
+      "match": "\\b\\w+(?:'[tdsm]|'(?:ve|re|ll)|\\\\'[tdsm]|\\\\'(?:ve|re|ll))\\b"
     },
     "php-interpolation": {
       "patterns": [
