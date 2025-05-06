@@ -63,6 +63,10 @@
                       "name": "string.quoted.double.html",
                       "patterns": [
                         {
+                          "match": "\\s*\\.\\s*",
+                          "name": "keyword.operator.string.php"
+                        },
+                        {
                           "include": "#php-interpolation"
                         }
                       ]
@@ -86,6 +90,9 @@
                   }
                 }
               ]
+            },
+            {
+              "include": "#escape-string-single"
             },
             {
               "include": "#php-interpolation"
@@ -172,6 +179,9 @@
               ]
             },
             {
+              "include": "#escape-string-double"
+            },
+            {
               "include": "#php-interpolation"
             }
           ]
@@ -181,30 +191,118 @@
     "php-interpolation": {
       "patterns": [
         {
-          "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
-          "name": "variable.other.php"
+          "include": "#php-variable"
         },
         {
-          "match": "\\s*\\.\\s*",
-          "name": "keyword.operator.string.php"
-        },
-        {
-          "match": "\\{",
-          "name": "punctuation.definition.begin.bracket.curly.php"
-        },
-        {
-          "match": "\\}",
-          "name": "punctuation.definition.end.bracket.curly.php"
-        },
-        {
-          "match": "\\[",
-          "name": "punctuation.section.array.begin.php"
-        },
-        {
-          "match": "\\]",
-          "name": "punctuation.section.array.end.php"
+          "begin": "\\{(?=\\$)",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.variable.php"
+            }
+          },
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.variable.php"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#php-function"
+            },
+            {
+              "include": "#php-variable"
+            }
+          ]
         }
       ]
+    },
+    "php-function": {
+      "patterns": [
+        {
+          "match": "\\$\\{\\s*([a-zA-Z_][a-zA-Z0-9_]*)\\s*(\\()(.*?)(\\))\\s*\\}",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.variable.php"
+            },
+            "1": {
+              "name": "entity.name.function.php"
+            },
+            "2": {
+              "name": "punctuation.definition.arguments.begin.bracket.round.php"
+            },
+            "3": {
+              "patterns": [
+                {
+                  "include": "source.php"
+                }
+              ]
+            },
+            "4": {
+              "name": "punctuation.definition.arguments.end.bracket.round.php"
+            },
+            "5": {
+              "name": "punctuation.definition.variable.php"
+            }
+          }
+        }
+      ]
+    },
+    "php-variable": {
+      "patterns": [
+        {
+          "match": "(\\$[a-zA-Z_][a-zA-Z0-9_][a-zA-Z_][a-zA-Z0-9_]*)(->)([a-zA-Z_][a-zA-Z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "variable.other.php"
+            },
+            "2": {
+              "name": "keyword.operator.class.php"
+            },
+            "3": {
+              "name": "variable.other.property.php"
+            }
+          }
+        },
+        {
+          "match": "(\\$[a-zA-Z_][a-zA-Z0-9_]*)(\\[)((['\"]).+?\\4|\\d+)(\\])",
+          "captures": {
+            "1": {
+              "name": "variable.other.php"
+            },
+            "2": {
+              "name": "punctuation.section.array.begin.php"
+            },
+            "3": {
+              "patterns": [
+                {
+                  "match": "(['\"]).+?\\1",
+                  "name": "string.quoted.php"
+                },
+                {
+                  "match": "\\d+",
+                  "name": "constant.numeric.php"
+                }
+              ]
+            },
+            "5": {
+              "name": "punctuation.section.array.end.php"
+            }
+          }
+        },
+        {
+          "match": "\\$[a-zA-Z_][a-zA-Z0-9_]*",
+          "name": "variable.other.php"
+        }
+      ]
+    },
+    "escape-string-single": {
+      "match": "\\\\(['\\\\nrtvef$]|[0-7]{1,3}|x[0-9A-Fa-f]{1,2})",
+      "name": "constant.character.escape.php"
+    },
+    "escape-string-double": {
+      "match": "\\\\([\"\\\\nrtvef$]|[0-7]{1,3}|x[0-9A-Fa-f]{1,2})",
+      "name": "constant.character.escape.php"
     }
   }
 }
