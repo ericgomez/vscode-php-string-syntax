@@ -265,16 +265,21 @@
           }
         },
         {
-          "match": "(\\$[a-zA-Z_][a-zA-Z0-9_]*)(\\[)((['\"]).+?\\4|\\d+)(\\])",
+          "match": "(\\$[a-zA-Z_][a-zA-Z0-9_]*)((?:\\[(?:(['\"]).+?\\3|\\d+)\\])+)",
           "captures": {
             "1": {
               "name": "variable.other.php"
             },
             "2": {
-              "name": "punctuation.section.array.begin.php"
-            },
-            "3": {
               "patterns": [
+                {
+                  "match": "\\[",
+                  "name": "punctuation.section.array.begin.php"
+                },
+                {
+                  "match": "\\]",
+                  "name": "punctuation.section.array.end.php"
+                },
                 {
                   "match": "(['\"]).+?\\1",
                   "name": "string.quoted.php"
@@ -284,9 +289,6 @@
                   "name": "constant.numeric.php"
                 }
               ]
-            },
-            "5": {
-              "name": "punctuation.section.array.end.php"
             }
           }
         },
