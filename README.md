@@ -44,7 +44,9 @@ Some themes will require customizing the appearance of embedded code by adding T
           "string.quoted.double.php punctuation.section.array",
           "string.quoted.single.php punctuation.section.array",
           "string.quoted.double.php punctuation.definition.arguments",
-          "string.quoted.single.php punctuation.definition.arguments"
+          "string.quoted.single.php punctuation.definition.arguments",
+          "string.quoted.double.php source.sql.embedded.php",
+          "string.quoted.single.php source.sql.embedded.php"
         ],
         "settings": {
           "foreground": "#BCBEC4"

@@ -2,7 +2,7 @@
   "name": "php-string-syntax",
   "displayName": "PHP String Syntax",
   "description": "Syntax highlighting for HTML, SQL and JavaScript inside PHP strings",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "publisher": "ericgomez",
   "icon": "images/logo.png",
   "license": "MIT",

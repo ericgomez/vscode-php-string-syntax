@@ -64,6 +64,9 @@
           "contentName": "source.js.embedded.php",
           "patterns": [
             {
+              "include": "#js-script-tags"
+            },
+            {
               "include": "source.js"
             },
             {
@@ -73,8 +76,129 @@
         }
       ]
     },
+    "js-script-tags": {
+      "patterns": [
+        {
+          "begin": "(<)(script)(?=\\s|>)",
+          "end": "(</)\\s*(script)\\s*(>)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.begin.html"
+            },
+            "2": {
+              "name": "entity.name.tag.script.html"
+            }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.begin.html"
+            },
+            "2": {
+              "name": "entity.name.tag.script.html"
+            },
+            "3": {
+              "name": "punctuation.definition.tag.end.html"
+            }
+          },
+          "patterns": [
+            {
+              "begin": "\\G",
+              "end": "(>)",
+              "endCaptures": {
+                "1": {
+                  "name": "punctuation.definition.tag.end.html"
+                }
+              },
+              "patterns": [
+                {
+                  "include": "#script-tag-attributes"
+                }
+              ]
+            },
+            {
+              "begin": "(?<=>)",
+              "end": "(?=</script>)",
+              "contentName": "source.js.embedded.html",
+              "patterns": [
+                {
+                  "include": "source.js"
+                },
+                {
+                  "include": "#php-interpolation"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "begin": "(<)(script)(?=\\s|/?>)",
+          "end": "(/?>)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.begin.html"
+            },
+            "2": {
+              "name": "entity.name.tag.script.html"
+            }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.end.html"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#script-tag-attributes"
+            }
+          ]
+        }
+      ]
+    },
+    "script-tag-attributes": {
+      "patterns": [
+        {
+          "match": "\\s+([a-zA-Z-]+)(?:=((['\"])([^'\"]*?)\\3|([^\\s>]+)))?",
+          "captures": {
+            "1": {
+              "name": "entity.other.attribute-name.html"
+            },
+            "2": {
+              "name": "string.quoted.html"
+            },
+            "3": {
+              "name": "punctuation.definition.string.begin.html"
+            },
+            "4": {
+              "patterns": [
+                {
+                  "include": "#php-interpolation"
+                },
+                {
+                  "match": ".*",
+                  "name": "string.unquoted.html"
+                }
+              ]
+            },
+            "5": {
+              "name": "string.unquoted.html"
+            }
+          }
+        },
+        {
+          "match": "\\s+([a-zA-Z-]+)",
+          "captures": {
+            "1": {
+              "name": "entity.other.attribute-name.html"
+            }
+          }
+        }
+      ]
+    },
     "php-interpolation": {
       "patterns": [
+        {
+          "include": "#php-function"
+        },
         {
           "include": "#php-variable"
         },
@@ -128,6 +252,30 @@
             },
             "5": {
               "name": "punctuation.definition.variable.php"
+            }
+          }
+        },
+        {
+          "match": "\\$([a-zA-Z_][a-zA-Z0-9_]*)(\\()(.*?)(\\))",
+          "captures": {
+            "0": {
+              "name": "meta.function-call.php"
+            },
+            "1": {
+              "name": "entity.name.function.php"
+            },
+            "2": {
+              "name": "punctuation.definition.arguments.begin.bracket.round.php"
+            },
+            "3": {
+              "patterns": [
+                {
+                  "include": "source.php"
+                }
+              ]
+            },
+            "4": {
+              "name": "punctuation.definition.arguments.end.bracket.round.php"
             }
           }
         }
