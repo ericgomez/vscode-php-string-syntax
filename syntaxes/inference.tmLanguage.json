@@ -115,27 +115,27 @@
       ]
     },
     "embedded-html-single": {
-      "begin": "\\s*(<)(/?(?!script\\b)[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9-]*(?:=(?:\"[^\"]*\"|[^\\s>]*))?)*)(\\s*)(/>|>)?",
+      "begin": "\\s*(<)(/)?((?!script\\b)[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9-]*(?:=(?:\"[^\"]*\"|[^\\s>]*))?)*)(\\s*)(/>|>)?",
       "end": "(?=')",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.html"
         },
         "2": {
-          "name": "entity.name.tag.html"
+          "name": "punctuation.definition.tag.begin.html"
         },
         "3": {
+          "name": "entity.name.tag.html"
+        },
+        "4": {
           "patterns": [
             {
               "include": "#html-tag-attributes"
             }
           ]
         },
-        "4": {
-          "name": "punctuation.whitespace.html"
-        },
         "5": {
-          "name": "punctuation.definition.tag.end.html"
+          "name": "punctuation.whitespace.html"
         },
         "6": {
           "name": "punctuation.definition.tag.end.html"
@@ -161,27 +161,27 @@
       ]
     },
     "embedded-html-double": {
-      "begin": "\\s*(<)(/?(?!script\\b)[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9-]*(?:=(?:'[^']*'|[^\\s>]*))?)*)(\\s*)(/>|>)?",
+      "begin": "\\s*(<)(/)?((?!script\\b)[a-zA-Z][a-zA-Z0-9]*)((?:\\s+[a-zA-Z][a-zA-Z0-9-]*(?:=(?:'[^']*'|[^\\s>]*))?)*)(\\s*)(/>|>)?",
       "end": "(?=\")",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.html"
         },
         "2": {
-          "name": "entity.name.tag.html"
+          "name": "punctuation.definition.tag.begin.html"
         },
         "3": {
+          "name": "entity.name.tag.html"
+        },
+        "4": {
           "patterns": [
             {
               "include": "#html-tag-attributes"
             }
           ]
         },
-        "4": {
-          "name": "punctuation.whitespace.html"
-        },
         "5": {
-          "name": "punctuation.definition.tag.end.html"
+          "name": "punctuation.whitespace.html"
         },
         "6": {
           "name": "punctuation.definition.tag.end.html"
@@ -204,17 +204,17 @@
       ]
     },
     "html-tags": {
-      "begin": "(<)([a-zA-Z][a-zA-Z0-9]*)",
+      "begin": "(<)(/)?([a-zA-Z][a-zA-Z0-9]*)",
       "end": "(?=(>|\\/>))",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.html"
         },
         "2": {
-          "name": "entity.name.tag.html"
+          "name": "punctuation.definition.tag.begin.html"
         },
         "3": {
-          "name": "punctuation.definition.tag.end.html"
+          "name": "entity.name.tag.html"
         }
       },
       "endCaptures": {

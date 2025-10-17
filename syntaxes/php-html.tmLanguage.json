@@ -34,12 +34,15 @@
           "contentName": "text.html.embedded.php",
           "patterns": [
             {
-              "begin": "(<)(/?[a-zA-Z][a-zA-Z0-9]*)",
+              "begin": "(<)(/)?([a-zA-Z][a-zA-Z0-9]*)",
               "beginCaptures": {
                 "1": {
                   "name": "punctuation.definition.tag.begin.html"
                 },
                 "2": {
+                  "name": "punctuation.definition.tag.begin.html"
+                },
+                "3": {
                   "name": "entity.name.tag.html"
                 }
               },
@@ -125,12 +128,15 @@
           "contentName": "text.html.embedded.php",
           "patterns": [
             {
-              "begin": "(<)(/?[a-zA-Z][a-zA-Z0-9]*)",
+              "begin": "(<)(/)?([a-zA-Z][a-zA-Z0-9]*)",
               "beginCaptures": {
                 "1": {
                   "name": "punctuation.definition.tag.begin.html"
                 },
                 "2": {
+                  "name": "punctuation.definition.tag.begin.html"
+                },
+                "3": {
                   "name": "entity.name.tag.html"
                 }
               },
