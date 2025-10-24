@@ -2,7 +2,7 @@
   "name": "php-string-syntax",
   "displayName": "PHP String Syntax",
   "description": "Syntax highlighting for HTML, SQL and JavaScript inside PHP strings",
-  "version": "0.1.8",
+  "version": "0.1.10",
   "publisher": "ericgomez",
   "icon": "images/logo.png",
   "license": "MIT",
@@ -54,16 +54,6 @@
         "embeddedLanguages": {
           "source.js.embedded.php": "js"
         }
-      },
-      {
-        "path": "./syntaxes/php-blade.tmLanguage.json",
-        "scopeName": "source.php.blade",
-        "injectTo": [
-          "text.html.php"
-        ],
-        "embeddedLanguages": {
-          "source.php": "php"
-        }
       }
     ]
   },
@@ -71,6 +61,7 @@
     "php",
     "sql",
     "html",
+    "javascript",
     "highlight",
     "string",
     "syntax"
