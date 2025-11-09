@@ -103,8 +103,7 @@
           "include": "#escape-string-double"
         },
         {
-          "match": "\\s*\\'\\s*",
-          "name": "string.quoted.single.php"
+          "include": "#sql-string-single-php"
         },
         {
           "include": "#php-interpolation"
@@ -269,6 +268,16 @@
           ]
         }
       }
+    },
+    "sql-string-single-php": {
+      "name": "string.quoted.single.sql",
+      "begin": "'",
+      "end": "'|(?=\")",
+      "patterns": [
+        {
+          "include": "#php-interpolation"
+        }
+      ]
     },
     "php-interpolation": {
       "patterns": [

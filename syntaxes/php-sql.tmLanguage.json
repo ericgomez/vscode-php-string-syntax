@@ -70,12 +70,25 @@
               "include": "#escape-string-double"
             },
             {
+              "include": "#sql-string-single-php"
+            },
+            {
               "include": "#php-interpolation"
             },
             {
               "include": "source.sql"
             }
           ]
+        }
+      ]
+    },
+    "sql-string-single-php": {
+      "name": "string.quoted.single.sql",
+      "begin": "'",
+      "end": "'|(?=\")",
+      "patterns": [
+        {
+          "include": "#php-interpolation"
         }
       ]
     },
