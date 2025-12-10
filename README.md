@@ -1,17 +1,17 @@
 # PHP String Syntax
 
-**PHP String Syntax** is a Visual Studio Code extension that highlights SQL, HTML, and JavaScript embedded in PHP strings. The extension automatically infers HTML and SQL content by default, while also supporting explicit language markers (`/*sql*/`, `/*html*/`, and `/*js*/`) to identify and apply syntax highlighting to SQL queries, HTML content, and JavaScript code.
+**PHP String Syntax** is a Visual Studio Code extension that highlights HTML, XML/SVG, SQL and JavaScript embedded in PHP strings. The extension automatically infers HTML, XML/SVG and SQL content by default, while JavaScript requires explicit language markers to identify and apply syntax highlighting.
 
 ## Features
 
-- **Automatic Language Detection**: Infers and highlights HTML and SQL content in PHP strings without requiring explicit markers.
-- **Explicit Language Markers**: Supports `/*sql*/`, `/*html*/`, and `/*js*/` comments for explicit language specification when needed.
+- **Automatic Language Detection**: Infers and highlights HTML, XML/SVG and SQL content in PHP strings without requiring explicit markers.
+- **Explicit Language Markers**: Supports `/*html*/`, `/*xml*/`, `/*svg*/`, `/*sql*/` and `/*js*/` comments for explicit language specification when needed.
 - **Compatibility with Other Editors**: The use of language markers does not interfere with syntax in other editors or IDEs.
-- **Multiline String Support**: Works seamlessly with queries, HTML content, and JavaScript code spread across multiple lines.
 
 ### Current Support
 
 - **HTML** (auto-detected and with explicit marker)
+- **XML/SVG** (auto-detected and with explicit marker)
 - **SQL** (auto-detected and with explicit marker)
 - **JavaScript** (with explicit marker)
 
@@ -28,7 +28,7 @@
 $jsCode = /*js*/ "console.log('Hello, World!');";
 ```
 
-Visual Studio Code will apply SQL, HTML, and JavaScript syntax highlighting to the content of the strings, improving readability and streamlining development.
+Visual Studio Code will apply HTML, XML/SVG, SQL and JavaScript syntax highlighting to the content of the strings, improving readability and streamlining development.
 
 ### Customization
 
@@ -39,23 +39,18 @@ Some themes will require customizing the appearance of embedded code by adding T
     "textMateRules": [
       {
         "scope": [
-          "string.quoted.double.php text.html.embedded.php",
-          "string.quoted.single.php text.html.embedded.php",
-          "string.quoted.double.php punctuation.section.array",
-          "string.quoted.single.php punctuation.section.array",
-          "string.quoted.double.php punctuation.definition.arguments",
-          "string.quoted.single.php punctuation.definition.arguments",
-          "string.quoted.double.php source.sql.embedded.php",
-          "string.quoted.single.php source.sql.embedded.php"
+          "string.quoted text.xml.embedded",
+          "string.quoted text.html.embedded",
+          "string.quoted source.sql.embedded",
+          "string.quoted source.js.embedded"
         ],
         "settings": {
-          "foreground": "#BCBEC4"
+          "foreground": "#ABB2BF"
         }
       },
       {
         "scope": [
-          "string.quoted.double.php punctuation.definition.tag",
-          "string.quoted.single.php punctuation.definition.tag"
+          // "string.quoted punctuation.definition.tag",
         ],
         "settings": {
           "foreground": "#ABB2BF"

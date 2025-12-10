@@ -2,7 +2,7 @@
   "name": "php-string-syntax",
   "displayName": "PHP String Syntax",
   "description": "Syntax highlighting for HTML, SQL and JavaScript inside PHP strings",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "publisher": "ericgomez",
   "icon": "images/logo.png",
   "license": "MIT",
@@ -19,41 +19,35 @@
         "scopeName": "source.php.inference",
         "injectTo": [
           "text.html.php"
-        ],
-        "embeddedLanguages": {
-          "source.sql.embedded.php": "sql",
-          "text.html.embedded.php": "html"
-        }
+        ]
       },
       {
         "path": "./syntaxes/php-sql.tmLanguage.json",
         "scopeName": "source.php.sql",
         "injectTo": [
           "text.html.php"
-        ],
-        "embeddedLanguages": {
-          "source.sql.embedded.php": "sql"
-        }
+        ]
+      },
+      {
+        "path": "./syntaxes/php-xml.tmLanguage.json",
+        "scopeName": "source.php.xml",
+        "injectTo": [
+          "text.html.php"
+        ]
       },
       {
         "path": "./syntaxes/php-html.tmLanguage.json",
         "scopeName": "source.php.html",
         "injectTo": [
           "text.html.php"
-        ],
-        "embeddedLanguages": {
-          "text.html.embedded.php": "html"
-        }
+        ]
       },
       {
         "path": "./syntaxes/php-js.tmLanguage.json",
         "scopeName": "source.php.js",
         "injectTo": [
           "text.html.php"
-        ],
-        "embeddedLanguages": {
-          "source.js.embedded.php": "js"
-        }
+        ]
       }
     ]
   },
